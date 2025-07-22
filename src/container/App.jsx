@@ -1,15 +1,19 @@
-import { Outlet } from "react-router"
-import Navbar from "../components/Navbar"
+import { Outlet } from "react-router";
+import Navbar from "../components/Navbar";
+import { Provider } from "react-redux";
+import { store } from "../redux/redux";
 
 function App() {
   return (
-    <div>
-      <Navbar />
+    <Provider store={store}>
       <div>
-        <Outlet />
+        <Navbar />
+        <div>
+          <Outlet />
+        </div>
       </div>
-    </div>
-  )
+    </Provider>
+  );
 }
 
-export default App
+export default App;

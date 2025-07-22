@@ -3,6 +3,9 @@ import Button from "../../components/Button";
 import { useEffect, useState } from "react";
 import { login } from "./api";
 import Alert from '../../components/Alert'
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
+import { loginSuccess } from "../../redux/redux";
 
 const Login = () => {
   const [username, setUsername] = useState();
@@ -12,6 +15,9 @@ const Login = () => {
 
   const [apiProgress, setApiProgress] = useState(false);
 
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   const submit = async (event) => {
     event.preventDefault();
     setError(undefined)
@@ -19,7 +25,8 @@ const Login = () => {
     const body = { username, password };
     try {
       const response = await login(body);
-      console.log(response);
+      dispatch(loginSuccess(response.data.user))
+      navigate('/home')
     } catch (error) {
       setError(error.response.data?.message);
     } finally {

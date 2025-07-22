@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import { signup } from "./api";
+import Alert from "../../components/Alert";
 
 const SignUp = () => {
   const [username, setUsername] = useState();
@@ -86,7 +87,11 @@ const SignUp = () => {
           type="password"
         />
         {successMessage && <Alert>{successMessage}</Alert>}
-        {generalError && <Alert styleType="danger">{generalError}</Alert>}
+        {generalError && (
+          <Alert className="alert alert-danger text-center mt-2">
+            {generalError}
+          </Alert>
+        )}
         <div className="mt-2 text-center">
           <Button
             disabled={password !== passwordRepeat}

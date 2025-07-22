@@ -45,7 +45,6 @@ const Navbar = () => {
                   <span
                     className="nav-link"
                     role="button"
-                    onClick={onLogoutSuccess}
                   >
                     {authState.username}
                   </span>
